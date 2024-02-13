@@ -1,4 +1,4 @@
--- In this report a nested structure was created. 
+-- In this report a nested structure was created..
 
 REPORT YBC430_00_ITAB_SORTED.
 
