@@ -1,0 +1,10 @@
+SELECTION-SCREEN BEGIN OF BLOCK blq1 WITH FRAME TITLE text-001.
+DATA:
+    fkart TYPE fkart,
+    fkdat TYPE fkdat.
+
+SELECT-OPTIONS:
+    so_fkart FOR fkart,
+    so_fkdat FOR fkdat.
+
+SELECTION-SCREEN END OF BLOCK blq1.

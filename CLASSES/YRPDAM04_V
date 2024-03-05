@@ -1,0 +1,34 @@
+TYPES:
+  BEGIN OF st1,
+    vbeln TYPE vbeln,
+    fkart TYPE fkart,
+    fkdat TYPE fkdat,
+    waerk TYPE waerk,
+    netwr TYPE netwr,
+  END OF st1.
+
+TYPES:
+  BEGIN OF st2,
+    vbeln TYPE vbeln,
+    matnr TYPE matnr,
+    fkimg TYPE fkimg,
+    vrkme TYPE vrkme,
+    fkart TYPE fkart,
+    fkdat TYPE fkdat,
+    waerk TYPE waerk,
+    netwr TYPE netwr,
+
+  END OF st2.
+
+TYPES:
+    ti_st1 TYPE STANDARD TABLE OF st1,
+    ti_st2 TYPE STANDARD TABLE OF st2.
+
+types: GTY_R_FKART TYPE RANGE OF FKART,
+       GTY_R_FKDAT TYPE RANGE OF FKDAT.
+
+DATA:
+    gst_st1 TYPE st1.
+*    gst_st2 TYPE st2,
+*    gti_st1 TYPE ti_st1,
+*    gti_st2 TYPE ti_st2.
