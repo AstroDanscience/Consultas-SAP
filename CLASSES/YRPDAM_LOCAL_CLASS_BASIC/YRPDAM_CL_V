@@ -1,0 +1,182 @@
+*&---------------------------------------------------------------------*
+*&  Include    YRPDAM_CL_V
+*&---------------------------------------------------------------------*
+
+ TYPES:
+      BEGIN OF gst_vbak,
+       gv_vbeln TYPE vbeln_va,
+       gv_auart TYPE auart,
+       gv_vkorg TYPE vkorg,
+       gv_vtweg TYPE vtweg,
+       gv_spart TYPE spart,
+       gv_audat TYPE audat,
+      END OF gst_vbak,
+
+      BEGIN OF gst_sovbak,
+       vbeln TYPE vbeln_va,
+       erdat TYPE erdat,
+       auart TYPE auart,
+       vkorg TYPE vkorg,
+       vtweg TYPE vtweg,
+       spart TYPE spart,
+      END OF gst_sovbak,
+
+     BEGIN OF gst_vbpa,
+      gv_vbeln TYPE vbeln_va,
+      gv_kunnr TYPE kunnr,
+      gv_parvw TYPE parvw,
+     END OF gst_vbpa,
+
+     BEGIN OF gst_kna1,
+      gv_kunnr TYPE kunnr,
+      gv_name1 TYPE name1_gp,
+     END OF gst_kna1,
+
+     BEGIN OF gst_vbap,
+      gv_vbeln TYPE vbeln_va,
+      gv_posnr TYPE posnr_va,
+     END OF gst_vbap,
+
+     BEGIN OF gst_tvakt,
+      gv_auart TYPE auart,
+      gv_bezei TYPE bezei20,
+     END OF gst_tvakt,
+
+     BEGIN OF gst_tvkot,
+      gv_vkorg TYPE vkorg,
+      gv_vtext TYPE vtxtk,
+     END OF gst_tvkot,
+
+     BEGIN OF gst_tvtwt,
+      gv_vtweg TYPE vtweg,
+      gv_vtext TYPE vtxtk,
+     END OF gst_tvtwt,
+
+     BEGIN OF gst_tspart,
+      gv_spart TYPE spart,
+      gv_vtext TYPE vtxtk,
+     END OF gst_tspart,
+
+     BEGIN OF gst_consulta,
+       gv_vbeln TYPE vbeln_va,
+       gv_kunnr TYPE kunnr,  " Solicitante
+       gv_name1 TYPE name1_gp, "Nombre de Solicitante
+       gv_kunnr_dest TYPE kunnr, "Destinatario de Mercancía
+       gv_name1_dest TYPE name1_gp, "Nombre del destinatario
+       gv_kunnr_paga TYPE kunnr,    "Pagador
+       gv_name1_paga TYPE name1_gp,  "Nombre del pagador
+       gv_auart TYPE auart, "Clase de pedido
+       gv_bezei TYPE bezei20,"Denominación de la clase de pedido
+       gv_vkorg TYPE vkorg,    "Organización de Venta
+       gv_vtext TYPE vtxtk, "Denominación de la organización de venta
+       gv_vtweg TYPE vtweg, "Sector
+       gv_vtexth TYPE vtxtk, "Denominación del sector
+       gv_spart TYPE spart,  "Canal
+       gv_vtextsp TYPE vtxtk, "Denominación del canal
+       gv_posnr TYPE i,  "Cantidad de posiciones
+       gv_antiguedad TYPE i, "Dias desde la creación del pedido
+       gi_icon TYPE icon_d, " Campo para almacenar el icono
+     END OF gst_consulta.
+
+ TYPES:
+       gti_tt_consulta TYPE STANDARD TABLE OF gst_consulta,
+       gti_tt_vbak TYPE STANDARD TABLE OF gst_vbak,
+       gti_tt_vbpa TYPE STANDARD TABLE OF gst_vbpa,
+       gti_tt_kna1 TYPE STANDARD TABLE OF gst_kna1,
+       gti_tt_vbap TYPE STANDARD TABLE OF gst_vbap,
+       gti_tt_tvakt TYPE STANDARD TABLE OF gst_tvakt,
+       gti_tt_tvkot TYPE STANDARD TABLE OF gst_tvkot,
+       gti_tt_tvtwt TYPE STANDARD TABLE OF gst_tvtwt,
+       gti_tt_tspart TYPE STANDARD TABLE OF gst_tspart.
+
+ TYPES:gty_r_vbeln TYPE RANGE OF vbeln,
+       gty_r_auart TYPE RANGE OF auart,
+       gty_r_vkorg TYPE RANGE OF vkorg,
+       gty_r_vtweg TYPE RANGE OF vtweg,
+       gty_r_spart TYPE RANGE OF spart,
+       gty_r_erdat TYPE RANGE OF audat.
+
+  DATA:gwa_so TYPE YSTDAM07.
+
+*      FIELD-SYMBOLS: <fs_consulta> TYPE gst_consulta.
+*
+*TYPES:
+*    BEGIN OF gst_vbeln,
+*
+*      gv_vbeln TYPE vbeln_va,
+*
+*    END OF gst_vbeln,
+*
+*     BEGIN OF gst_name,
+*
+*      name1 TYPE name1_gp,
+*
+*    END OF gst_name,
+*
+*    BEGIN OF gst_posnr,
+*
+*      gv_posnr TYPE posnr_va,
+*
+*    END OF gst_posnr,
+*
+*    BEGIN OF gst_aux,
+*
+*      gv_auart TYPE auart,
+*      gv_vkorg TYPE vkorg,
+*      gv_vtweg TYPE vtweg,
+*      gv_spart TYPE spart,
+*      gv_audat TYPE audat,
+*      gv_antiguedad TYPE i,
+*
+*    END OF gst_aux,
+*
+*    BEGIN OF gst_bezei,
+*     gv_bezei TYPE bezei20,
+*   END OF gst_bezei.
+*
+*
+*TYPES:
+*      BEGIN OF gst_consulta,
+*        gv_vbeln TYPE vbeln_va,
+*        gv_kunnr TYPE kunnr,
+*        gv_name1 TYPE name1_gp,
+*        gv_kunnr_dest TYPE kunnr, "Destinatario de Mercancía
+*        gv_name1_dest TYPE name1_gp, "Nombre del destinatario
+*        gv_kunnr_paga TYPE kunnr,    "Pagador
+*        gv_name1_paga TYPE name1_gp,
+*        gv_auart TYPE auart, "Clase de pedido
+*        gv_bezei TYPE bezei20, "Denominación clase de pedido
+*        gv_vkorg TYPE vkorg,    "Organización de Venta
+*        gv_vtweg TYPE vtweg, "Denominación organización de Venta
+*        gv_spart TYPE spart,  "Denominación del canal, sector
+*        gv_posnr TYPE posnr_va,  "Cantidad de posiciones
+*        gv_antiguedad TYPE i,
+*        gi_icon TYPE C, " Campo para almacenar el icono
+*
+*      END OF gst_consulta.
+*
+* TYPES:
+*    gti_tt_consulta TYPE STANDARD TABLE OF gst_consulta.
+*
+*DATA: gv_vbeln TYPE vbeln,
+*      gv_erdat TYPE erdat,
+*      gv_auart TYPE auart,
+*      gv_vkorg TYPE vkorg,
+*      antiguedad TYPE i,
+*
+*      lwa_consulta TYPE gst_consulta,
+*      lwa_kunnr TYPE kunnr_sty,
+*      lwa_name TYPE gst_name,
+*      lwa_vbpa TYPE vbpavb,
+*      lwa_vbeln TYPE gst_vbeln,
+*      lwa_aux TYPE gst_aux,
+*      lwa_bezei TYPE gst_bezei,
+*      lwa_posnr TYPE gst_posnr,
+*
+*      gti_consulta TYPE gti_tt_consulta,
+*      gti_vbpa TYPE vbpa,
+*
+*      lo_salv TYPE REF TO cl_salv_table,
+*      lo_functions TYPE REF TO cl_salv_functions,
+*      lo_columns TYPE REF TO cl_salv_columns_table,
+*      lo_column TYPE REF TO  cl_salv_column.
